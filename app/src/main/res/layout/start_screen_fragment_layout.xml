@@ -9,7 +9,7 @@
         android:id="@+id/spinner"
         android:entries="@array/seconds_spinner_list"
         android:prompt="@string/spinner_title"
-        android:spinnerMode="dialog"
+        android:spinnerMode="dropdown"
         android:layout_gravity="center_horizontal" />
 
     <Button

@@ -45,7 +45,7 @@ public class TaskPreviewFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        taskPreviewAdapter.updateIdLists(serviceManager.getAllTasksId());
+      //  taskPreviewAdapter.updateIdLists(serviceManager.getAllTasksId());
     }
     @Override
     public void onDetach() {
