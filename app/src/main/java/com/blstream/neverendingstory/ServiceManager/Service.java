@@ -11,6 +11,7 @@ import com.blstream.neverendingstory.Interfaces.IService;
  * Created by Patryk Gwiazdowski
  */
 public class Service implements IService {
+    private ServiceTask serviceTask;
     private int taskID;
     private long taskDuration;
     protected ServiceTask mService;
@@ -32,6 +33,7 @@ public class Service implements IService {
     public Service(int taskID, long duration) {
         this.taskID = taskID;
         this.taskDuration = duration;
+        serviceTask = new ServiceTask();
     }
 
     @Override
