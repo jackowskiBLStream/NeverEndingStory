@@ -1,5 +1,6 @@
 package com.blstream.neverendingstory.Class;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,7 +35,7 @@ public class TaskPreviewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         serviceManager = new ServiceManager();
-        taskPreviewAdapter = new TaskPreviewAdapter(serviceManager);
+        //taskPreviewAdapter = new TaskPreviewAdapter(serviceManager);
 
     }
     @Override

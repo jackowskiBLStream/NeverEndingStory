@@ -29,7 +29,7 @@ public class StartScreenFragment extends Fragment  {
 
     public void addListenerOnSpinnerItemSelection() {
         spinner = (Spinner)view.findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+        spinner.setOnItemSelectedListener(new CustomOnItemSelectedListener(getFragmentManager()));
     }
 
 }
