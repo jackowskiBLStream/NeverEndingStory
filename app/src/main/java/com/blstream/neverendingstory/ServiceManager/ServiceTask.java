@@ -7,11 +7,33 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
+
 /**
  * Created by Patryk Gwiazdowski
  * Service class that runs in background and performs task in specified time
  */
-public class ServiceTask extends android.app.Service {
+public class ServiceTask extends android.app.Service implements ISingleTaskService {
+    /**
+     * @return return service instance. With it you can use methods
+     */
+    public class LocalBinder extends Binder {
+        ServiceTask getService() {
+            return ServiceTask.this;
+        }
+    }
+
+    private final IBinder mBinder = new LocalBinder();
+
+    /**
+     * @return task elapsed time in milis
+     */
+    @Override
+    public long getelapsedTime() {
+        return 0;
+    }
+
+
     /**
      * Return the communication channel to the service.  May return null if
      * clients can not bind to the service.  The returned
@@ -32,28 +54,10 @@ public class ServiceTask extends android.app.Service {
      * return Return an IBinder through which clients can call on to the
      * service.
      */
-    private Handler handler = new Handler();
-
-    private final IBinder mBinder = new LocalBinder();
-
-    public class LocalBinder extends Binder {
-        ServiceTask getService() {
-            //zwracamy instancje serwisu, przez nią odwołamy się następnie do metod.
-            return ServiceTask.this;
-        }
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
     }
-    //metoda którą zapewniamy.
-    public void generateToast() {
-        handler.post(new Runnable() {
-            public void run() {
-                Toast.makeText(getApplicationContext(), "WITAJ W SERWISIE(znowu)", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
 }
 
