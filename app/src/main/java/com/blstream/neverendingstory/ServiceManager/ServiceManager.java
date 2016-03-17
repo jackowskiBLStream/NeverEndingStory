@@ -1,7 +1,7 @@
 package com.blstream.neverendingstory.ServiceManager;
 
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
-import com.blstream.neverendingstory.Interfaces.ITask;
+import com.blstream.neverendingstory.Interfaces.IService;
 
 /**
  * Created by INV-6179 on 17.03.2016.
@@ -36,7 +36,7 @@ public class ServiceManager implements IServiceManager {
      * @returns true if properly added, false if not
      */
     @Override
-    public boolean addTask(ITask task) {
+    public boolean addTask(IService task) {
         return false;
     }
 

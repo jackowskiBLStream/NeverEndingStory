@@ -23,7 +23,7 @@ public interface IServiceManager {
      * @param task
      * @returns true if properly added, false if not
      */
-    boolean addTask(ITask task);
+    boolean addTask(IService task);
 
     /**
      *
