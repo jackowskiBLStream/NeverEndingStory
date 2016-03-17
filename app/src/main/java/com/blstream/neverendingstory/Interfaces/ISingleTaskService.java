@@ -1,11 +1,14 @@
 package com.blstream.neverendingstory.Interfaces;
 
 /**
- * Created by blstream on 3/17/2016.
+ * Created by Patryk Gwiazdowski
  */
 public interface ISingleTaskService {
 
-    void startService();
+    /**
+     *
+     * @return task elapsed time in milis
+     */
+    long getelapsedTime();
 
-    void stopService();
 }
