@@ -3,7 +3,7 @@ package com.blstream.neverendingstory.Interfaces;
 /**
  *
  */
-public interface ITask {
+public interface IService {
     int getId();
 
     String getName();
