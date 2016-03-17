@@ -75,6 +75,4 @@ public class TaskPreviewAdapterTest {
         assertNotEquals(countBefeoreChange,countAfterChange);
     }
 
-    @Test
-    public void should
 }
