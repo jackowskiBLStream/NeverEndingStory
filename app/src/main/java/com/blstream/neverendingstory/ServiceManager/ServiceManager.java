@@ -7,6 +7,10 @@ import com.blstream.neverendingstory.Interfaces.ITask;
  * Created by INV-6179 on 17.03.2016.
  */
 public class ServiceManager implements IServiceManager {
+
+    public ServiceManager(){
+
+    }
     /**
      * @param taskId Id of task
      * @returns task's progress in percent. Returns 0 if is already waiting in queue

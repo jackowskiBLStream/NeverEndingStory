@@ -3,10 +3,7 @@ package com.blstream.neverendingstory.ServiceManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
-import android.os.Handler;
 import android.os.IBinder;
-import android.widget.Toast;
-
 import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
 
 /**
