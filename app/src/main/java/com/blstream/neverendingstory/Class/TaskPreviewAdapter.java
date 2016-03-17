@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
-import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
 import com.blstream.neverendingstory.R;
 
 import java.util.ArrayList;
@@ -22,14 +21,12 @@ import java.util.ArrayList;
 public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.ViewHolder> {
     private ArrayList<Integer> ListOfTasksInService;
     private IServiceManager manager;
-    private final Context context;
 
-    public TaskPreviewAdapter(Context context, IServiceManager mServiceManager){
-        this.context = context;
+    public TaskPreviewAdapter(IServiceManager mServiceManager){
         this.manager = mServiceManager;
         this.ListOfTasksInService = manager.getAllTasksId();
     }
-    public void swap(ArrayList<Integer> datas){
+    public void updateIdLists(ArrayList<Integer> datas){
         ListOfTasksInService.clear();
         ListOfTasksInService.addAll(datas);
         notifyDataSetChanged();
