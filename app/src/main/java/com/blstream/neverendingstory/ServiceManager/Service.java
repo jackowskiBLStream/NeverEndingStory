@@ -12,6 +12,7 @@ import com.blstream.neverendingstory.Interfaces.IService;
  */
 public class Service implements IService {
     private int taskID;
+    private long taskDuration;
     protected ServiceTask mService;
     protected boolean mBound = false;
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -24,12 +25,13 @@ public class Service implements IService {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            mBound=false;
+            mBound = false;
         }
     };
 
-    public Service(int taskID,long duration) {
-
+    public Service(int taskID, long duration) {
+        this.taskID = taskID;
+        this.taskDuration = duration;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class Service implements IService {
     }
 
     /**
-     * @return
+     * @return returns task duration
      */
     @Override
     public long getInitialTime() {
