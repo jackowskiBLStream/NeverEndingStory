@@ -33,7 +33,6 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
     public void updateIdLists(ArrayList<Integer> datas){
         listOfTasksInService.clear();
         listOfTasksInService.addAll(datas);
-        notifyDataSetChanged();
     }
     @Override
     public TaskPreviewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,8 +43,10 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
 
     @Override
     public void onBindViewHolder(TaskPreviewAdapter.ViewHolder holder, int position) {
-        holder.mTitle.setText(manager.getTaskTitle(listOfTasksInService.get(position)));
-        holder.progresBar.setProgress((int) manager.getTaskProgress(listOfTasksInService.get(position)));
+        if(listOfTasksInService.size() != 0) {
+            holder.mTitle.setText(manager.getTaskTitle(listOfTasksInService.get(position)));
+            holder.progresBar.setProgress((int) manager.getTaskProgress(listOfTasksInService.get(position)));
+        }
     }
 
     @Override
