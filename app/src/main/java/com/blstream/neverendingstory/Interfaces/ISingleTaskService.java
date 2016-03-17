@@ -9,6 +9,6 @@ public interface ISingleTaskService {
      *
      * @return task elapsed time in milis
      */
-    long getelapsedTime();
+    long getElapsedTime();
 
 }
