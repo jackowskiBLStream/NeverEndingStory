@@ -12,6 +12,7 @@ public class ServiceThread implements Runnable {
     public ServiceThread(long duration, TimeHolder timeHolder) {
         this.duration = duration;
         this.timeHolder = timeHolder;
+
     }
 
     /**
