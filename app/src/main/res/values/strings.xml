@@ -3,4 +3,14 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_main_layout">MainActivity</string>
+    <string name="spinner_title">Wybierz czas</string>
+
+    <string-array name="seconds_spinner_list">
+        <item>10 sekund</item>
+        <item>15 sekund</item>
+        <item>20 sekund</item>
+        <item>25 sekund</item>
+        <item>Zdefiniuj wlasny czas…</item>
+    </string-array>
+
 </resources>

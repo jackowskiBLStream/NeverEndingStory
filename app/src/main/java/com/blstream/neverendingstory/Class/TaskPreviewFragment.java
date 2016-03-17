@@ -1,6 +1,5 @@
 package com.blstream.neverendingstory.Class;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,7 +44,7 @@ public class TaskPreviewFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        taskPreviewAdapter.updateIdLists(serviceManager.getAllTasksId());
+      //  taskPreviewAdapter.updateIdLists(serviceManager.getAllTasksId());
     }
     @Override
     public void onDetach() {
