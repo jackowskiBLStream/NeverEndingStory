@@ -1,4 +1,4 @@
-package com.blstream.neverendingstory;
+package com.blstream.neverendingstory.Interfaces;
 
 /**
  *
