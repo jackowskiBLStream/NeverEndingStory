@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+
 import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
 
 /**
@@ -13,7 +14,7 @@ import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
 public class ServiceTask extends android.app.Service implements ISingleTaskService {
 
     /**
-     * @return return service instance. With it you can use methods
+     * return return service instance. With it you can use methods
      */
     public class LocalBinder extends Binder {
         ServiceTask getService() {
@@ -23,15 +24,14 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
 
     private final IBinder mBinder = new LocalBinder();
     private TimeHolder timeHolder;
-    private long elapsedTime;
-    private Runnable thread;
+
 
     /**
      * @return task elapsed time in milis
      */
     public synchronized long getElapsedTime() {
 
-        return elapsedTime;
+        return timeHolder.getElapsedTime();
 
     }
 
@@ -48,17 +48,21 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
      * of the process</em>.  More information about the main thread can be found in
      * <a href="{@docRoot}guide/topics/fundamentals/processes-and-threads.html">Processes and
      * Threads</a>.</p>
-     *
+     * <p/>
      * param intent The Intent that was used to bind to this service,
-     *               as given to {@link Context#bindService
-     *               Context.bindService}.  Note that any extras that were included with
-     *               the Intent at that point will <em>not</em> be seen here.
+     * as given to {@link Context#bindService
+     * Context.bindService}.  Note that any extras that were included with
+     * the Intent at that point will <em>not</em> be seen here.
      * return Return an IBinder through which clients can call on to the
      * service.
+     *
+     * @param intent should pass long "duration" in intent
      */
     @Override
     public IBinder onBind(Intent intent) {
-        long duration = intent.getLongExtra("duration",0);
+        Runnable thread;
+        timeHolder = new TimeHolder();
+        long duration = intent.getLongExtra("duration", 0);
         thread = new Thread(new ServiceThread(duration, timeHolder));
         thread.run();
         return mBinder;

@@ -41,7 +41,7 @@ public class Service implements IService {
 
     @Override
     public String getName() {
-        return null;
+        return "Operacja przewidziana na "+(taskDuration/1000)+" sekund";
     }
 
     /**
@@ -49,16 +49,16 @@ public class Service implements IService {
      */
     @Override
     public long getInitialTime() {
-        return 0;
+        return taskDuration;
     }
 
     @Override
     public long getElapsedTime() {
-        return 0;
+        return mService.getElapsedTime();
     }
 
     @Override
     public ISingleTaskService getService() {
-        return null;
+        return mService;
     }
 }
