@@ -26,7 +26,7 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
         this.manager = mServiceManager;
         this.ListOfTasksInService = manager.getAllTasksId();
     }
-    public void swap(ArrayList<Integer> datas){
+    public void updateIdLists(ArrayList<Integer> datas){
         ListOfTasksInService.clear();
         ListOfTasksInService.addAll(datas);
         notifyDataSetChanged();
