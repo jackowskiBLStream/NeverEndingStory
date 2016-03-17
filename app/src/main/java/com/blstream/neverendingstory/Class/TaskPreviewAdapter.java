@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.blstream.neverendingstory.Interfaces.ITask;
+import com.blstream.neverendingstory.Interfaces.IService;
 import com.blstream.neverendingstory.R;
 
 import java.util.List;
@@ -20,10 +20,10 @@ import java.util.List;
  */
 public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.ViewHolder> {
 
-    private List<ITask> mTasks;
+    private List<IService> mTasks;
     private final Context context;
 
-    public TaskPreviewAdapter(Context context, List<ITask> mTasks) {
+    public TaskPreviewAdapter(Context context, List<IService> mTasks) {
         this.context = context;
         this.mTasks = mTasks;
     }
