@@ -9,11 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
-import com.blstream.neverendingstory.Interfaces.ITask;
 import com.blstream.neverendingstory.R;
-import com.blstream.neverendingstory.ServiceManager.ServiceManager;
-
-import java.util.List;
 
 /**
  *
