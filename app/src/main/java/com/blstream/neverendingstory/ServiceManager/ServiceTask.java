@@ -21,13 +21,14 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
     }
 
     private final IBinder mBinder = new LocalBinder();
+    private long elapsedTime;
 
     /**
      * @return task elapsed time in milis
      */
-    @Override
-    public long getelapsedTime() {
+    public synchronized long getelapsedTime() {
         return 0;
+
     }
 
 
@@ -53,6 +54,7 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
      */
     @Override
     public IBinder onBind(Intent intent) {
+
         return mBinder;
     }
 
