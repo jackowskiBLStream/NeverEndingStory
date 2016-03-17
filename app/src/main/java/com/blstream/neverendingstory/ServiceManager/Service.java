@@ -8,7 +8,7 @@ import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
 import com.blstream.neverendingstory.Interfaces.IService;
 
 /**
- * Created by INV-6179 on 17.03.2016.
+ * Created by Patryk Gwiazdowski
  */
 public class Service implements IService {
     private int taskID;
