@@ -1,14 +1,14 @@
-package com.blstream.neverendingstory.Class;
+package com.blstream.neverendingstory.ServiceManager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 /**
+ * Created by Patryk Gwiazdowski
  * Service class that runs in background and performs task in specified time
  */
 public class ServiceTask extends android.app.Service {

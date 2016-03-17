@@ -8,6 +8,10 @@ public interface ITask {
 
     String getName();
 
+    /**
+     *
+     * @return
+     */
     long getInitialTime();
 
     long getElapsedTime();
