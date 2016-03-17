@@ -3,6 +3,8 @@ package com.blstream.neverendingstory.ServiceManager;
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
 import com.blstream.neverendingstory.Interfaces.IService;
 
+import java.util.ArrayList;
+
 /**
  * Created by INV-6179 on 17.03.2016.
  */
@@ -54,5 +56,13 @@ public class ServiceManager implements IServiceManager {
     @Override
     public int getAllTasksNumber() {
         return 0;
+    }
+
+    /**
+     * @return all ids of task in queue;
+     */
+    @Override
+    public ArrayList<Integer> getAllTasksId() {
+        return null;
     }
 }
