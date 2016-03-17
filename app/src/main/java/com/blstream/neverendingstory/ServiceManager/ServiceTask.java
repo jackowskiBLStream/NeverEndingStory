@@ -11,6 +11,7 @@ import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
  * Service class that runs in background and performs task in specified time
  */
 public class ServiceTask extends android.app.Service implements ISingleTaskService {
+
     /**
      * @return return service instance. With it you can use methods
      */
@@ -21,13 +22,16 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
     }
 
     private final IBinder mBinder = new LocalBinder();
+    private ElapsedTimeHolder elapsedTimeHolder;
     private long elapsedTime;
+    private Runnable thread;
 
     /**
      * @return task elapsed time in milis
      */
-    public synchronized long getelapsedTime() {
-        return 0;
+    public synchronized long getElapsedTime() {
+
+        return elapsedTime;
 
     }
 
@@ -54,7 +58,9 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
      */
     @Override
     public IBinder onBind(Intent intent) {
-
+        long duration = intent.getLongExtra("duration",0);
+        thread = new Thread(new ServiceThread(duration));
+        thread.run();
         return mBinder;
     }
 

@@ -7,11 +7,10 @@ package com.blstream.neverendingstory.ServiceManager;
 public class ServiceThread implements Runnable {
     long duration;
     long elapsedTime;
-    long updateInterval;
+    static final long updateInterval = 50;
 
-    public ServiceThread(long duration, long elapsedTime) {
+    public ServiceThread(long duration) {
         this.duration = duration;
-        this.elapsedTime = elapsedTime;
     }
 
     /**
@@ -30,4 +29,5 @@ public class ServiceThread implements Runnable {
             elapsedTime += updateInterval;
         }
     }
+
 }
