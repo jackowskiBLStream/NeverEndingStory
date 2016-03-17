@@ -22,7 +22,7 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
     }
 
     private final IBinder mBinder = new LocalBinder();
-    private ElapsedTimeHolder elapsedTimeHolder;
+    private TimeHolder timeHolder;
     private long elapsedTime;
     private Runnable thread;
 
@@ -59,7 +59,7 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
     @Override
     public IBinder onBind(Intent intent) {
         long duration = intent.getLongExtra("duration",0);
-        thread = new Thread(new ServiceThread(duration));
+        thread = new Thread(new ServiceThread(duration, timeHolder));
         thread.run();
         return mBinder;
     }

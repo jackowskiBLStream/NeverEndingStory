@@ -1,5 +1,6 @@
 package com.blstream.neverendingstory;
 
+import com.blstream.neverendingstory.ServiceManager.TimeHolder;
 import com.blstream.neverendingstory.ServiceManager.ServiceThread;
 
 import org.junit.Test;
@@ -12,9 +13,14 @@ import static org.junit.Assert.*;
 public class ServiceThreadTest {
     @Test
     public void testShouldReturn500() {
-        long elapsedTime=0;
-        ServiceThread thread = new  ServiceThread(500);
-        thread.run();
-        assertEquals(500, thread.getElapsedTime());
+        TimeHolder holder = new TimeHolder();
+        ServiceThread thread = new  ServiceThread(500,holder);
+        new Thread(thread).run();
+        try {
+            Thread.sleep(501);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertEquals(500, holder.getElapsedTime());
     }
 }

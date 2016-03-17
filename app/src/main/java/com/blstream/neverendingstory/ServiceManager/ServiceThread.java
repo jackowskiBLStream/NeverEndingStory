@@ -6,11 +6,12 @@ package com.blstream.neverendingstory.ServiceManager;
  */
 public class ServiceThread implements Runnable {
     long duration;
-    long elapsedTime;
     static final long updateInterval = 50;
+    TimeHolder timeHolder;
 
-    public ServiceThread(long duration) {
+    public ServiceThread(long duration, TimeHolder timeHolder) {
         this.duration = duration;
+        this.timeHolder = timeHolder;
     }
 
     /**
@@ -20,13 +21,13 @@ public class ServiceThread implements Runnable {
      */
     @Override
     public void run() {
-        while (elapsedTime < duration) {
+        while (timeHolder.getElapsedTime() < duration) {
             try {
                 Thread.sleep(updateInterval);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            elapsedTime += updateInterval;
+            timeHolder.setElapsedTime(timeHolder.getElapsedTime()+updateInterval);
         }
     }
 
