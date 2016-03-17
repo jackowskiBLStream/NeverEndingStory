@@ -1,5 +1,7 @@
 package com.blstream.neverendingstory.Interfaces;
 
+import java.util.ArrayList;
+
 /**
  * ServiceManager interface containing very important methods
  */
@@ -36,4 +38,10 @@ public interface IServiceManager {
      * @returns all tasks' number
      */
     int getAllTasksNumber();
+
+    /**
+     *
+     * @return all ids of task in queue;
+     */
+    ArrayList<Integer> getAllTasksId();
 }
