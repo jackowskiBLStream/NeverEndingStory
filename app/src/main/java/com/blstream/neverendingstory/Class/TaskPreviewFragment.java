@@ -52,5 +52,11 @@ public class TaskPreviewFragment extends Fragment {
         super.onDetach();
     }
 
-
+    /**
+     *
+     * @return instance of taskPreviewAdapter
+     */
+    public TaskPreviewAdapter getAdapter(){
+        return this.taskPreviewAdapter;
+    }
 }
