@@ -9,7 +9,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
+import com.blstream.neverendingstory.Interfaces.ISingleTaskService;
 import com.blstream.neverendingstory.R;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -17,17 +20,20 @@ import com.blstream.neverendingstory.R;
  *
  */
 public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.ViewHolder> {
-
+    private ArrayList<Integer> ListOfTasksInService;
     private IServiceManager manager;
     private final Context context;
 
     public TaskPreviewAdapter(Context context, IServiceManager mServiceManager){
         this.context = context;
         this.manager = mServiceManager;
+        this.ListOfTasksInService = manager.getAllTasksId();
     }
-
-
-
+    public void swap(ArrayList<Integer> datas){
+        ListOfTasksInService.clear();
+        ListOfTasksInService.addAll(datas);
+        notifyDataSetChanged();
+    }
     @Override
     public TaskPreviewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
@@ -37,7 +43,8 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
 
     @Override
     public void onBindViewHolder(TaskPreviewAdapter.ViewHolder holder, int position) {
-
+        holder.mTitle.setText(manager.getTaskTitle(ListOfTasksInService.get(position)));
+        holder.progresBar.setProgress((int) manager.getTaskProgress(ListOfTasksInService.get(position)));
     }
 
     @Override
@@ -56,7 +63,6 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
             mTitle = (TextView) view.findViewById(R.id.taskTitle);
             progresBar = (ProgressBar) view.findViewById(R.id.taskProgressBar);
         }
-
         @Override
         public String toString() {
             return super.toString() + " '" + mTitle.getText() + "'";
