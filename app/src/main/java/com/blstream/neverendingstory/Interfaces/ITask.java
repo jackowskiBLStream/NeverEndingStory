@@ -8,9 +8,9 @@ public interface ITask {
 
     String getName();
 
-    int getInitialTime();
+    long getInitialTime();
 
-    int getElapsedTime();
+    long getElapsedTime();
 
     ISingleTaskService getService();
 

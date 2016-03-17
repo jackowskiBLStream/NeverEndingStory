@@ -5,7 +5,10 @@ package com.blstream.neverendingstory.Interfaces;
  */
 public interface ISingleTaskService {
 
-    void startService();
+    /**
+     *
+     * @return ttask elapsed time in milis
+     */
+    long getelapsedTime();
 
-    void stopService();
 }
