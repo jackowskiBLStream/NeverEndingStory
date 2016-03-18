@@ -47,7 +47,7 @@ public class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedL
                // Toast.makeText(context, (int) seconds, Toast.LENGTH_SHORT).show();
                 spinnerArray.add(spinnerArray.size() - 1, String.valueOf((int) seconds) + " sekund");
                 dFragment.dismiss();
-                iSpinnerHelperListener.onAddElementToSpinnerListener();
+                iSpinnerHelperListener.onAddElementToSpinnerListener(seconds);
             }
         });
 
