@@ -17,9 +17,10 @@ public interface IService {
     long getInitialTime();
 
     /**
-     *
+     *  Returns task elapsed time.
+     *  If task has started
      * @param context
-     * @return
+     * @return task elapsed time.
      */
     long getElapsedTime(Context context);
 

@@ -57,6 +57,7 @@ public class Service implements IService {
         return taskDuration;
     }
 
+
     @Override
     public long getElapsedTime(Context context) {
         if(mService != null){
@@ -72,7 +73,10 @@ public class Service implements IService {
         return 0;
     }
 
-
+    /**
+     * Starts service
+     * @return true if service was successfully bounded
+     */
     @Override
     public boolean startService(Context context){
         Intent intent = new Intent(context, ServiceTask.class);
