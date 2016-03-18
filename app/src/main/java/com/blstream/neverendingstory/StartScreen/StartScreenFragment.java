@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.blstream.neverendingstory.R;
 
@@ -23,6 +25,7 @@ public class StartScreenFragment extends Fragment {
     private View view;
     private CustomTimeDialog customTimeDialog;
     private ArrayAdapter<String> adapter;
+    private Button startButton;
 
     @Nullable
     @Override
@@ -30,6 +33,14 @@ public class StartScreenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.start_screen_fragment_layout, container, false);
         manageSpinner();
+        startButton = (Button) view.findViewById(R.id.button);
+
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "TWOJA STARA TO GITARA A TWOJ STARY NA NIEJ GRA", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 
