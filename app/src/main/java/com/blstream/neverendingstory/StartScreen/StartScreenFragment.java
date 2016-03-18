@@ -12,6 +12,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.blstream.neverendingstory.R;
+import com.blstream.neverendingstory.ServiceManager.Service;
+import com.blstream.neverendingstory.ServiceManager.ServiceManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,8 @@ public class StartScreenFragment extends Fragment {
     private CustomTimeDialog customTimeDialog;
     private ArrayAdapter<String> adapter;
     private Button startButton;
+    private ServiceManager manager;
+    private int counter;
 
     @Nullable
     @Override
@@ -34,17 +38,19 @@ public class StartScreenFragment extends Fragment {
         view = inflater.inflate(R.layout.start_screen_fragment_layout, container, false);
         manageSpinner();
         startButton = (Button) view.findViewById(R.id.button);
-
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "TWOJA STARA TO GITARA A TWOJ STARY NA NIEJ GRA", Toast.LENGTH_SHORT).show();
+                manager.addTask(new Service(counter, 1000));
+                        counter++;
             }
         });
         return view;
     }
 
-
+    public void setServiceManager(ServiceManager manager){
+        this.manager = manager;
+    }
     public void manageSpinner() {
         final List<String> spinnerArray = new ArrayList<>();
         CustomOnItemSelectedListener customOnItemSelectedListener;

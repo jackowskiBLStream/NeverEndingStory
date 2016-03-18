@@ -96,9 +96,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void init(){
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), 2
-        );
         ServiceManager myService = new ServiceManager(this);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), 2,
+        myService);
+        mSectionsPagerAdapter.getStartScreenFragment().setServiceManager(myService);
         myService.setTaskPreviewFragment(mSectionsPagerAdapter.getTaskPreviewFragment());
         serviceManager = new Thread(myService);
         serviceManager.start();

@@ -20,18 +20,21 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private int mNumOfTabs;
     private TaskPreviewFragment taskPreviewFragment;
-
-    public SectionsPagerAdapter(FragmentManager fm, int NumOfTabs) {
+    private StartScreenFragment startScreenFragment;
+    private ServiceManager manager;
+    public SectionsPagerAdapter(FragmentManager fm, int NumOfTabs,ServiceManager manager) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
+        this.manager = manager;
         this.taskPreviewFragment = new TaskPreviewFragment();
+        this.startScreenFragment = new StartScreenFragment();
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                StartScreenFragment tab1 = new StartScreenFragment();
+                StartScreenFragment tab1 = startScreenFragment;
                 return tab1;
             case 1:
                 TaskPreviewFragment task = taskPreviewFragment;
@@ -40,7 +43,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
-
+    public StartScreenFragment getStartScreenFragment(){
+        return this.startScreenFragment;
+    }
     @Override
     public int getCount() {
         // Show 3 total pages.
