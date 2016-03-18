@@ -2,7 +2,6 @@ package com.blstream.neverendingstory.Class;
 
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,12 +17,12 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
+ *
  * Created by Krzysztof Antczak on 17.03.2016.
  */
 @RunWith(RobolectricGradleTestRunner.class)
