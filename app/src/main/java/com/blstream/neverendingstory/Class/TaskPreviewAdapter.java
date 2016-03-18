@@ -38,6 +38,18 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
         listOfTasksInService.clear();
         listOfTasksInService.addAll(datas);
     }
+    public void addItem(Integer taskId){
+        listOfTasksInService.add(taskId);
+        notifyItemInserted(listOfTasksInService.size() - 1);
+    }
+    public void removeItem(int taskId){
+        listOfTasksInService.remove(findItemPositionById(taskId));
+    }
+
+    public int findItemPositionById(int taskId){
+        return listOfTasksInService.indexOf(taskId);
+    }
+
     public ArrayList<Integer> getListOfTasksInService(){
         return this.listOfTasksInService;
     }
