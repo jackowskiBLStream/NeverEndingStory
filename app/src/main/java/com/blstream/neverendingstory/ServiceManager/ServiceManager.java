@@ -30,7 +30,7 @@ public class ServiceManager implements IServiceManager, Runnable {
      * @returns task's progress in percent. Returns 0 if is already waiting in queue
      */
     @Override
-    public float getTaskProgress(int taskId) {
+    public synchronized float getTaskProgress(int taskId) {
         Service task = findServiceById(taskId);
         if (task != null) {
             return task.getElapsedTime(context);
@@ -44,7 +44,7 @@ public class ServiceManager implements IServiceManager, Runnable {
      * @returns task's title
      */
     @Override
-    public String getTaskTitle(int taskId) {
+    public synchronized String getTaskTitle(int taskId) {
         Service task = findServiceById(taskId);
         if (task != null) {
             return task.getName();
@@ -60,7 +60,7 @@ public class ServiceManager implements IServiceManager, Runnable {
      * @returns true if properly added, false if not
      */
     @Override
-    public boolean addTask(IService task) {
+    public synchronized boolean addTask(IService task) {
         servicesQueue.add((Service) task);
         return true;
     }
@@ -69,7 +69,7 @@ public class ServiceManager implements IServiceManager, Runnable {
      * @returns taks's number being already executed
      */
     @Override
-    public int getExecutedTasksNumber() {
+    public synchronized int getExecutedTasksNumber() {
         return executedCount;
     }
 
@@ -77,7 +77,7 @@ public class ServiceManager implements IServiceManager, Runnable {
      * @returns all tasks' number
      */
     @Override
-    public int getAllTasksNumber() {
+    public synchronized int getAllTasksNumber() {
         return servicesQueue.size();
     }
 
@@ -85,7 +85,7 @@ public class ServiceManager implements IServiceManager, Runnable {
      * @return all ids of task in queue;
      */
     @Override
-    public ArrayList<Integer> getAllTasksId() {
+    public synchronized ArrayList<Integer> getAllTasksId() {
         ArrayList<Integer> ids = new ArrayList<>();
         for (Service task : servicesQueue) {
             ids.add(task.getId());
@@ -93,7 +93,7 @@ public class ServiceManager implements IServiceManager, Runnable {
         return ids;
     }
 
-    public void setTaskPreviewFragment(TaskPreviewFragment taskPreviewFragment) {
+    public synchronized void setTaskPreviewFragment(TaskPreviewFragment taskPreviewFragment) {
         this.taskPreviewFragment = taskPreviewFragment;
     }
 
@@ -127,7 +127,7 @@ public class ServiceManager implements IServiceManager, Runnable {
         }
     }
 
-    private Service findServiceById(int serviceId) {
+    private synchronized Service findServiceById(int serviceId) {
         for (Service task : servicesQueue) {
             if (task.getId() == serviceId) {
                 return task;
