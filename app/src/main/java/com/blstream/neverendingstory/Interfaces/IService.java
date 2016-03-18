@@ -1,5 +1,7 @@
 package com.blstream.neverendingstory.Interfaces;
 
+import android.content.Context;
+
 /**
  *
  */
@@ -14,10 +16,20 @@ public interface IService {
      */
     long getInitialTime();
 
-    long getElapsedTime();
+    /**
+     *
+     * @param context
+     * @return
+     */
+    long getElapsedTime(Context context);
 
-    ISingleTaskService getService();
+    /**
+     * Starts service
+     * @return true if service was successfully bounded
+     */
+    boolean startService(Context context);
 
 
 
 }
+;

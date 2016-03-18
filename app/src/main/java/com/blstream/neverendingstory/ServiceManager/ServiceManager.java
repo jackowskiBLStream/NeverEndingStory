@@ -1,17 +1,20 @@
 package com.blstream.neverendingstory.ServiceManager;
 
+import android.content.Context;
+
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
 import com.blstream.neverendingstory.Interfaces.IService;
 
 import java.util.ArrayList;
 
 /**
- * Created by INV-6179 on 17.03.2016.
+ * Created by Patryk Gwiazdowski on 17.03.2016.
+ * Service manager will manage all your services and execute then in order
  */
 public class ServiceManager implements IServiceManager {
-
-    public ServiceManager(){
-
+    Context context;
+    public ServiceManager(Context context){
+        this.context = context;
     }
     /**
      * @param taskId Id of task
