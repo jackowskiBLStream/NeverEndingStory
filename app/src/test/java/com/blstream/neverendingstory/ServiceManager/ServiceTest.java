@@ -2,6 +2,7 @@ package com.blstream.neverendingstory.ServiceManager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.test.mock.MockContext;
 
 import org.junit.Test;
 
@@ -17,10 +18,14 @@ public class ServiceTest {
     public void testStartNewServiceShouldReturn500(){
         //given
         Service testService;
-        Intent intent;
-        //then
+        MockContext context;
+        //when
         testService = new Service(1,500);
-        intent = new Intent(null,Service.class);
+        context = new MockContext();
+
+        //then
+        testService.startService(context);
+
 
     }
 }

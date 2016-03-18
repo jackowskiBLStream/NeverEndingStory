@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blstream.neverendingstory.R;
+import com.blstream.neverendingstory.ServiceManager.Service;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Service testService = new Service(1,10000);
+        boolean  serviceStarted = testService.startService(getApplicationContext());
+        System.out.println("start Service:"+ serviceStarted);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long elapsedTime = testService.getElapsedTime(getApplicationContext());
+        System.out.println("test "+ elapsedTime);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
         if(savedInstanceState != null){
