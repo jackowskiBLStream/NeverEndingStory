@@ -30,6 +30,7 @@ public class StartScreenFragment extends Fragment {
     private Button startButton;
     private ServiceManager manager;
     private int counter;
+    private int mSeconds;
 
     @Nullable
     @Override
@@ -41,7 +42,8 @@ public class StartScreenFragment extends Fragment {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                manager.addTask(new Service(counter, 1000));
+
+                manager.addTask(new Service(counter, mSeconds));
                         counter++;
             }
         });
