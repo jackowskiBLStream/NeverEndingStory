@@ -40,19 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Service testService = new Service(1,10000);
-        boolean  serviceStarted = testService.startService(getApplicationContext());
-        System.out.println("start Service:"+ serviceStarted);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        long elapsedTime = testService.getElapsedTime(getApplicationContext());
-        System.out.println("test "+ elapsedTime);
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             return;
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -67,8 +59,22 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
+    }
 
+    /**
+     * Dispatch onStart() to all fragments.  Ensure any created loaders are
+     * now started.
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Service testService = new Service(1, 10000);
+        boolean serviceStarted = testService.startService(getApplicationContext());
+        System.out.println("start Service:" + serviceStarted);
+        long elapsedTime;
 
+        elapsedTime = testService.getElapsedTime(getApplicationContext());
+        System.out.println("test " + elapsedTime);
     }
 
 
@@ -93,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
 }

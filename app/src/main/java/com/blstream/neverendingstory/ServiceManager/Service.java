@@ -16,11 +16,13 @@ public class Service implements IService {
     private long taskDuration;
     private ServiceTask mService;
     private boolean mBound;
+    private boolean finished;
     private ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             ServiceTask.LocalBinder binder = (ServiceTask.LocalBinder) service;
             mService = binder.getService();
+            System.out.println("Bound!");
             mBound = true;
         }
 
@@ -33,6 +35,7 @@ public class Service implements IService {
     public Service(int taskID, long duration) {
         this.taskID = taskID;
         this.taskDuration = duration;
+        this.finished = false;
     }
 
     /**
@@ -76,6 +79,7 @@ public class Service implements IService {
             } else {
                 context.unbindService(mConnection);
                 mBound = false;
+                finished = true;
                 return taskDuration;
             }
         } else
@@ -93,5 +97,12 @@ public class Service implements IService {
         intent.putExtra("duration", taskDuration);
         mBound = context.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         return mBound;
+    }
+
+    public boolean isBound() {
+        return mBound;
+    }
+    public boolean isFinished(){
+        return finished;
     }
 }
