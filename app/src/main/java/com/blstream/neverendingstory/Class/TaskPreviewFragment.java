@@ -18,7 +18,6 @@ import com.blstream.neverendingstory.ServiceManager.ServiceManager;
  * @author Krzysztof Antczak
  */
 public class TaskPreviewFragment extends Fragment {
-    private IServiceManager serviceManager;
     private TaskPreviewAdapter taskPreviewAdapter;
 
     @Override
@@ -35,6 +34,12 @@ public class TaskPreviewFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        serviceManager = new ServiceManager(getContext());
+
+        IServiceManager serviceManager = new ServiceManager(getContext());
+        taskPreviewAdapter = new TaskPreviewAdapter(serviceManager);
+    }
+
+    public TaskPreviewAdapter returnAdapter(){
+        return this.taskPreviewAdapter;
     }
 }
