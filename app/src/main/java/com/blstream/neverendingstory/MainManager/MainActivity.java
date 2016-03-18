@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blstream.neverendingstory.R;
+import com.blstream.neverendingstory.ServiceManager.Service;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_layout);
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             return;
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,8 +59,22 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
+    }
 
+    /**
+     * Dispatch onStart() to all fragments.  Ensure any created loaders are
+     * now started.
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Service testService = new Service(1, 10000);
+        boolean serviceStarted = testService.startService(getApplicationContext());
+        System.out.println("start Service:" + serviceStarted);
+        long elapsedTime;
 
+        elapsedTime = testService.getElapsedTime(getApplicationContext());
+        System.out.println("test " + elapsedTime);
     }
 
 
@@ -82,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
 }

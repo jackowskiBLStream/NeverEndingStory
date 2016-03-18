@@ -1,25 +1,43 @@
 package com.blstream.neverendingstory.ServiceManager;
 
+import android.content.Context;
+
+import com.blstream.neverendingstory.Class.TaskPreviewAdapter;
+import com.blstream.neverendingstory.Class.TaskPreviewFragment;
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
 import com.blstream.neverendingstory.Interfaces.IService;
 
 import java.util.ArrayList;
 
 /**
- * Created by INV-6179 on 17.03.2016.
+ * Created by Patryk Gwiazdowski on 17.03.2016.
+ * Service manager will manage all your services and execute then in order
  */
-public class ServiceManager implements IServiceManager {
+public class ServiceManager implements IServiceManager, Runnable {
+    private Context context;
+    private ArrayList<Service> servicesQueue;
+    private int executedCount;
+    private TaskPreviewFragment taskPreviewFragment;
 
-    public ServiceManager(){
 
+    public ServiceManager(Context context,TaskPreviewFragment taskPreviewfragment) {
+        this.context = context;
+        servicesQueue = new ArrayList<>();
+        this.taskPreviewFragment = taskPreviewFragment;
     }
+
     /**
      * @param taskId Id of task
      * @returns task's progress in percent. Returns 0 if is already waiting in queue
      */
     @Override
     public float getTaskProgress(int taskId) {
-        return 0;
+        Service task = findServiceById(taskId);
+        if (task != null) {
+            return task.getElapsedTime(context);
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -28,7 +46,12 @@ public class ServiceManager implements IServiceManager {
      */
     @Override
     public String getTaskTitle(int taskId) {
-        return null;
+        Service task = findServiceById(taskId);
+        if (task != null) {
+            return task.getName();
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -39,7 +62,8 @@ public class ServiceManager implements IServiceManager {
      */
     @Override
     public boolean addTask(IService task) {
-        return false;
+        servicesQueue.add((Service) task);
+        return true;
     }
 
     /**
@@ -47,7 +71,7 @@ public class ServiceManager implements IServiceManager {
      */
     @Override
     public int getExecutedTasksNumber() {
-        return 0;
+        return executedCount;
     }
 
     /**
@@ -55,7 +79,7 @@ public class ServiceManager implements IServiceManager {
      */
     @Override
     public int getAllTasksNumber() {
-        return 0;
+        return servicesQueue.size();
     }
 
     /**
@@ -63,6 +87,46 @@ public class ServiceManager implements IServiceManager {
      */
     @Override
     public ArrayList<Integer> getAllTasksId() {
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (Service task : servicesQueue) {
+            ids.add(task.getId());
+        }
+        return ids;
+    }
+
+    /**
+     * Starts executing the active part of the class' code. This method is
+     * called when a thread is started that has been created with a class which
+     * implements {@code Runnable}.
+     */
+    @Override
+    public void run() {
+        while (true) {
+            for (Service task : servicesQueue) {
+                if (executedCount < 4 && !task.isBound()) {
+                    task.startService(context);
+                    executedCount++;
+                }
+
+                if(task.isFinished()){
+                    executedCount--;
+                    servicesQueue.remove(task);
+                }
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Service findServiceById(int serviceId) {
+        for (Service task : servicesQueue) {
+            if (task.getId() == serviceId) {
+                return task;
+            }
+        }
         return null;
     }
 }
