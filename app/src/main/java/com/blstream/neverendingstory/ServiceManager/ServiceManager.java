@@ -110,9 +110,10 @@ public class ServiceManager implements IServiceManager, Runnable {
                     task.startService(context);
                     executedCount++;
                 }
-
+                System.out.println("task"+task.getId()+ "time: "+task.getElapsedTime(context));
                 if(task.isFinished()){
                     executedCount--;
+                    System.out.println("task"+task.getId()+ "finished");
                     servicesQueue.remove(task);
                 }
 
