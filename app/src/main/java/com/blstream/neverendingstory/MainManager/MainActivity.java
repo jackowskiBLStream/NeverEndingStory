@@ -53,16 +53,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), 2
-        );
-        serviceManager = new Thread(new ServiceManager(getApplicationContext()));
-        serviceManager.start();
+        init();
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
     }
 
     /**
@@ -95,6 +90,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void init(){
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), 2
+        );
+        ServiceManager myService = new ServiceManager(this);
+        myService.setTaskPreviewFragment(mSectionsPagerAdapter.getTaskPreviewFragment());
+        serviceManager = new Thread(myService);
+        serviceManager.start();
     }
 
 

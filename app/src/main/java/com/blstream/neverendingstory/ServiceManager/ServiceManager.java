@@ -118,7 +118,7 @@ public class ServiceManager implements IServiceManager, Runnable {
 
             }
             taskPreviewFragment.returnAdapter().updateIdLists(getAllTasksId());
-            taskPreviewFragment.returnAdapter().notifyDataSetChanged();
+//            taskPreviewFragment.returnAdapter().notifyDataSetChanged();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {

@@ -19,10 +19,12 @@ import com.blstream.neverendingstory.StartScreen.StartScreenFragment;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private int mNumOfTabs;
+    private TaskPreviewFragment taskPreviewFragment;
 
     public SectionsPagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
         this.mNumOfTabs = NumOfTabs;
+        this.taskPreviewFragment = new TaskPreviewFragment();
     }
 
     @Override
@@ -32,7 +34,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 StartScreenFragment tab1 = new StartScreenFragment();
                 return tab1;
             case 1:
-                TaskPreviewFragment task = new TaskPreviewFragment();
+                TaskPreviewFragment task = taskPreviewFragment;
                 return task;
             default:
                 return null;
@@ -56,5 +58,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return "SECTION 3";
         }
         return null;
+    }
+
+    public TaskPreviewFragment getTaskPreviewFragment(){
+        return this.taskPreviewFragment;
     }
 }
