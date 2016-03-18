@@ -24,7 +24,7 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
 
     private final IBinder mBinder = new LocalBinder();
     private TimeHolder timeHolder;
-
+    private Thread thread;
 
     /**
      * @return task elapsed time in milis
@@ -60,11 +60,11 @@ public class ServiceTask extends android.app.Service implements ISingleTaskServi
      */
     @Override
     public IBinder onBind(Intent intent) {
-        Runnable thread;
+
         timeHolder = new TimeHolder();
         long duration = intent.getLongExtra("duration", 0);
         thread = new Thread(new ServiceThread(duration, timeHolder));
-        thread.run();
+        thread.start();
         return mBinder;
     }
 
