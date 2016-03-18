@@ -68,13 +68,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Service testService = new Service(1, 10000);
-        boolean serviceStarted = testService.startService(getApplicationContext());
-        System.out.println("start Service:" + serviceStarted);
-        long elapsedTime;
-
-        elapsedTime = testService.getElapsedTime(getApplicationContext());
-        System.out.println("test " + elapsedTime);
     }
 
 
