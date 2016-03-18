@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.blstream.neverendingstory.StartScreen.StartScreenFragment;
+
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
@@ -27,8 +29,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 StartScreenFragment tab1 = new StartScreenFragment();
                 return tab1;
-            /*case 1:
-                return ;*/
+           /* case 1:
+                TaskPreviewFragment task = new TaskPreviewFragment();
+                return task;*/
             default:
                 return null;
         }
