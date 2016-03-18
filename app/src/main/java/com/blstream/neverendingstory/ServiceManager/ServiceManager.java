@@ -110,24 +110,30 @@ public class ServiceManager implements IServiceManager, Runnable {
                     task.startService(context);
                     executedCount++;
                 }
-                System.out.println("task"+task.getId()+ "time: "+task.getElapsedTime(context));
-                if(task.isFinished()){
-                    executedCount--;
-                    System.out.println("task"+task.getId()+ "finished");
-                    servicesQueue.remove(task);
-                }
+                System.out.println("task "+task.getId()+ " time: "+task.getElapsedTime(context));
 
             }
+            removeFinished(servicesQueue);
             taskPreviewFragment.returnAdapter().updateIdLists(getAllTasksId());
 //            taskPreviewFragment.returnAdapter().notifyDataSetChanged();
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
+    private void removeFinished(ArrayList<Service> list){
+        for (int i = 0; i<list.size();i++) {
+            if(list.get(i).isFinished()){
+                System.out.println("task" + list.get(i).getId()+ " finished");
+                list.remove(i);
+                i--;
+                executedCount--;
 
+            }
+        }
+    }
     private synchronized Service findServiceById(int serviceId) {
         for (Service task : servicesQueue) {
             if (task.getId() == serviceId) {

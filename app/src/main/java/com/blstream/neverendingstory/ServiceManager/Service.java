@@ -75,7 +75,7 @@ public class Service implements IService {
     public long getElapsedTime(Context context) {
         if (mService != null) {
             if (mService.getElapsedTime() < taskDuration) {
-                return taskDuration;
+                return mService.getElapsedTime();
             } else {
                 context.unbindService(mConnection);
                 mBound = false;
