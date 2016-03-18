@@ -10,40 +10,48 @@ import android.widget.TextView;
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
 import com.blstream.neverendingstory.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- *
  * @author Krzysztof Antczak
- *
  */
 public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.ViewHolder> {
     private ArrayList<Integer> listOfTasksInService;
     private IServiceManager manager;
 
-    public TaskPreviewAdapter(IServiceManager mServiceManager){
+    /**
+     * Constructor of TaskPreviewAdapter.
+     * @param mServiceManager instance of service Manager.
+     */
+    public TaskPreviewAdapter(IServiceManager mServiceManager) {
         this.manager = mServiceManager;
         this.listOfTasksInService = manager.getAllTasksId();
     }
 
     /**
      * Method used to update adapter;
+     *
      * @param datas array of tasks Ids that have been added to queue;
      */
-    public void updateIdLists(ArrayList<Integer> datas){
+    public void updateIdLists(ArrayList<Integer> datas) {
         listOfTasksInService.clear();
         listOfTasksInService.addAll(datas);
     }
+    public ArrayList<Integer> getListOfTasksInService(){
+        return this.listOfTasksInService;
+    }
+
     @Override
     public TaskPreviewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.task_element_layout,parent,false);
+                .inflate(R.layout.task_element_layout, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(TaskPreviewAdapter.ViewHolder holder, int position) {
-        if(listOfTasksInService.size() != 0) {
+        if (listOfTasksInService.size() != 0) {
             holder.mTitle.setText(manager.getTaskTitle(listOfTasksInService.get(position)));
             holder.progresBar.setProgress((int) manager.getTaskProgress(listOfTasksInService.get(position)));
         }
@@ -65,6 +73,7 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
 
         /**
          * Constructor where we set reference to layout of progressbar and TextView.
+         *
          * @param view instance of view.
          */
         public ViewHolder(View view) {
@@ -75,7 +84,6 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
         }
 
         /**
-         *
          * @return text as String from titleTextView.
          */
         @Override
