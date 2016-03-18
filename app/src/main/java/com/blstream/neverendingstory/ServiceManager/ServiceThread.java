@@ -6,7 +6,7 @@ package com.blstream.neverendingstory.ServiceManager;
  */
 public class ServiceThread implements Runnable {
     long duration;
-    static final long updateInterval = 50;
+    static final long updateInterval = 500;
     TimeHolder timeHolder;
 
     public ServiceThread(long duration, TimeHolder timeHolder) {
