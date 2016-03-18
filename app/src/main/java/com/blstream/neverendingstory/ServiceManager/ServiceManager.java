@@ -3,6 +3,7 @@ package com.blstream.neverendingstory.ServiceManager;
 import android.content.Context;
 
 import com.blstream.neverendingstory.Class.TaskPreviewAdapter;
+import com.blstream.neverendingstory.Class.TaskPreviewFragment;
 import com.blstream.neverendingstory.Interfaces.IServiceManager;
 import com.blstream.neverendingstory.Interfaces.IService;
 
@@ -16,13 +17,13 @@ public class ServiceManager implements IServiceManager, Runnable {
     private Context context;
     private ArrayList<Service> servicesQueue;
     private int executedCount;
-    private TaskPreviewAdapter taskPreviewAdapter;
+    private TaskPreviewFragment taskPreviewFragment;
 
 
-    public ServiceManager(Context context,TaskPreviewAdapter taskPreviewAdapter) {
+    public ServiceManager(Context context,TaskPreviewFragment taskPreviewfragment) {
         this.context = context;
         servicesQueue = new ArrayList<>();
-        this.taskPreviewAdapter = taskPreviewAdapter;
+        this.taskPreviewFragment = taskPreviewFragment;
     }
 
     /**
@@ -111,11 +112,11 @@ public class ServiceManager implements IServiceManager, Runnable {
                     executedCount--;
                     servicesQueue.remove(task);
                 }
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            }
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
