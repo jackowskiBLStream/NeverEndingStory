@@ -20,10 +20,9 @@ public class ServiceManager implements IServiceManager, Runnable {
     private TaskPreviewFragment taskPreviewFragment;
 
 
-    public ServiceManager(Context context,TaskPreviewFragment taskPreviewfragment) {
+    public ServiceManager(Context context) {
         this.context = context;
         servicesQueue = new ArrayList<>();
-        this.taskPreviewFragment = taskPreviewFragment;
     }
 
     /**
@@ -94,6 +93,10 @@ public class ServiceManager implements IServiceManager, Runnable {
         return ids;
     }
 
+    public void setTaskPreviewFragment(TaskPreviewFragment taskPreviewFragment) {
+        this.taskPreviewFragment = taskPreviewFragment;
+    }
+
     /**
      * Starts executing the active part of the class' code. This method is
      * called when a thread is started that has been created with a class which
@@ -112,7 +115,10 @@ public class ServiceManager implements IServiceManager, Runnable {
                     executedCount--;
                     servicesQueue.remove(task);
                 }
+
             }
+            taskPreviewFragment.returnAdapter().updateIdLists(getAllTasksId());
+            taskPreviewFragment.returnAdapter().notifyDataSetChanged();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
