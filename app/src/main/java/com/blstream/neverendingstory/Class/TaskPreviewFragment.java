@@ -37,21 +37,4 @@ public class TaskPreviewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         serviceManager = new ServiceManager(getContext());
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-      //  taskPreviewAdapter.updateIdLists(serviceManager.getAllTasksId());
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
 }

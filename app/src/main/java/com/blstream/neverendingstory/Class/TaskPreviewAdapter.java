@@ -66,7 +66,7 @@ public class TaskPreviewAdapter extends RecyclerView.Adapter<TaskPreviewAdapter.
      * class of ViewHolder implementation.
      * Use to remember each element in list.
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mTitle;
         public final ProgressBar progresBar;

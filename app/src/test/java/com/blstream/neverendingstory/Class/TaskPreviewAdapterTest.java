@@ -1,6 +1,10 @@
 package com.blstream.neverendingstory.Class;
 
 
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.blstream.neverendingstory.BuildConfig;
@@ -20,9 +24,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- *
  * Created by Krzysztof Antczak on 17.03.2016.
- *
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21, manifest = "src/main/AndroidManifest.xml")
@@ -30,6 +32,9 @@ public class TaskPreviewAdapterTest {
     ServiceManager manager;
     ArrayList<Integer> array;
     TextView textView;
+    ProgressBar progressBar;
+    ViewGroup viewGroup;
+    Context context;
     @Before
     public void setup() {
         array = new ArrayList<>(6);
@@ -41,6 +46,13 @@ public class TaskPreviewAdapterTest {
         manager = mock(ServiceManager.class);
         when(manager.getAllTasksId()).thenReturn(array);
         textView = mock(TextView.class);
+        context = mock(Context.class);
+        viewGroup = mock(ViewGroup.class);
+        when(viewGroup.getContext()).thenReturn(context);
+        textView = mock(TextView.class);
+        progressBar = mock(ProgressBar.class);
+
+
     }
 
     @After
@@ -48,8 +60,9 @@ public class TaskPreviewAdapterTest {
         array = null;
         manager = null;
     }
+
     @Test
-    public void shouldCreateAdapterWithEmptyArray(){
+    public void shouldCreateAdapterWithEmptyArray() {
         //given
         ServiceManager serviceManager = mock(ServiceManager.class);
         ArrayList<Integer> emptyList = new ArrayList<>();
@@ -60,14 +73,13 @@ public class TaskPreviewAdapterTest {
         assertArrayEquals(adapter.getListOfTasksInService().toArray(), emptyList.toArray());
 
 
-
     }
+
     @Test
     public void shouldReturnArrayOfIdList() throws Exception {
         //given
-        TaskPreviewAdapter adapter = new TaskPreviewAdapter(manager);
         //when
-        ArrayList<Integer> arrayReturned = manager.getAllTasksId();
+        TaskPreviewAdapter adapter = new TaskPreviewAdapter(manager);
         //then
         assertArrayEquals(adapter.getListOfTasksInService().toArray(), array.toArray());
     }
@@ -99,13 +111,4 @@ public class TaskPreviewAdapterTest {
         //then
         assertNotEquals(countBefeoreChange, countAfterChange);
     }
-    public void testToString() throws Exception {
-        //given
-        TaskPreviewAdapter adapter = new TaskPreviewAdapter(manager);
-//        adapter.onBindViewHolder(new TaskPreviewAdapter.ViewHolder().mTitle.getText());
-        when(textView.getText()).thenReturn("Titile");
-        //when
-
-    }
-
 }
