@@ -70,7 +70,7 @@ public class StartScreenFragment extends Fragment {
 
         customOnItemSelectedListener.setiSpinnerHelperListener(new ISpinnerHelperListener() {
             @Override
-            public void onAddElementToSpinnerListener() {
+            public void onAddElementToSpinnerListener(float seconds) {
                 adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
