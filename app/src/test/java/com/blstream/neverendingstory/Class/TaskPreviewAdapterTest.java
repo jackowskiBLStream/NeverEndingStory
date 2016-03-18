@@ -55,7 +55,7 @@ public class TaskPreviewAdapterTest {
     }
 
     @After
-    public void setUpAfet() {
+    public void setUpAfter() {
         array = null;
         manager = null;
     }
@@ -70,8 +70,6 @@ public class TaskPreviewAdapterTest {
         TaskPreviewAdapter adapter = new TaskPreviewAdapter(serviceManager);
         //then
         assertArrayEquals(adapter.getListOfTasksInService().toArray(), emptyList.toArray());
-
-
     }
 
     @Test

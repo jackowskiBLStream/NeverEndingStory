@@ -43,11 +43,17 @@ public class StartScreenFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                manager.addTask(new Service(counter, mSeconds));
+                manager.addTask(new Service(counter, 2000));
                         counter++;
             }
         });
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //tutaj robimy findView i listenery
     }
 
     public void setServiceManager(ServiceManager manager){
@@ -73,6 +79,7 @@ public class StartScreenFragment extends Fragment {
         customOnItemSelectedListener.setiSpinnerHelperListener(new ISpinnerHelperListener() {
             @Override
             public void onAddElementToSpinnerListener(float seconds) {
+                //FIXME: nie tworzyc adaptera na nowo
                 adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
@@ -80,6 +87,8 @@ public class StartScreenFragment extends Fragment {
 
             }
         });
+
+        //TODO: użyjmy swojego adaptera (extends BaseAdapter)
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, spinnerArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

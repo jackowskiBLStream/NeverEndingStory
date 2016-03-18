@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.blstream.neverendingstory.Interfaces.IService;
 
@@ -28,6 +29,7 @@ public class Service implements IService {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            mService = null;
             mBound = false;
         }
     };

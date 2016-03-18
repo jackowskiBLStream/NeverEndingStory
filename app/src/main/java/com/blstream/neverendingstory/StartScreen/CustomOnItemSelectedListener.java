@@ -30,26 +30,28 @@ public class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedL
         iSpinnerHelperListener = null;
     }
 
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        //FIXME: code porn ==
         if (parent.getItemAtPosition(pos) == "Zdefiiniuj wlasny czas....") {
             manageDialogFragment(parent, fragmentManager, pos);
         }
 
     }
 
-    public void manageDialogFragment(AdapterView<?> parent, FragmentManager fragmentManager, int pos) {
+    void manageDialogFragment(AdapterView<?> parent, FragmentManager fragmentManager, int pos) {
         final CustomTimeDialog dFragment = new CustomTimeDialog();
         // Show DialogFragment
-        dFragment.show(fragmentManager, "Dialog Fragment");
         dFragment.setiDialogHelperListener(new IDialogHelperListener() {
             @Override
             public void onClickOkButtonListener(float seconds) {
-               // Toast.makeText(context, (int) seconds, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(context, (int) seconds, Toast.LENGTH_SHORT).show();
                 spinnerArray.add(spinnerArray.size() - 1, String.valueOf((int) seconds) + " sekund");
                 dFragment.dismiss();
                 iSpinnerHelperListener.onAddElementToSpinnerListener(seconds);
             }
         });
+        dFragment.show(fragmentManager, "Dialog Fragment");
 
     }
 

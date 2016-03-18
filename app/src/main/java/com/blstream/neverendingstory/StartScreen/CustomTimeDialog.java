@@ -2,6 +2,8 @@ package com.blstream.neverendingstory.StartScreen;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +29,37 @@ public class CustomTimeDialog extends DialogFragment {
         editText = (EditText) view.findViewById(R.id.timeEditText);
         getDialog().setTitle("Hello");
 
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //wailidacja
+
+                if (s != null) {
+                    //zablokuje button i wyswietl error
+                    editText.setError("blad");
+                }
+                else {
+
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                   float seconds = Float.parseFloat(String.valueOf(editText.getText()));
+                   float seconds = Float.parseFloat(editText.getText().toString());
                     if (isNumberIntegerAndGreaterThanZero(seconds)) {
                         iDialogHelperListener.onClickOkButtonListener(seconds);
                     } else {
@@ -45,9 +73,6 @@ public class CustomTimeDialog extends DialogFragment {
         return view;
     }
 
-    public void validateNumber() {
-
-    }
 
     public boolean isNumberIntegerAndGreaterThanZero(float seconds) {
         return seconds == (int) seconds && seconds > 0;

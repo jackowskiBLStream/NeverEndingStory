@@ -18,11 +18,21 @@ import com.blstream.neverendingstory.ServiceManager.ServiceManager;
  * @author Krzysztof Antczak
  *
  */
-public class TaskPreviewFragment extends Fragment {
+public class TaskPreviewFragment extends Fragment implements OnTaskAdded {
+    interface  OnTAskAdded {
+        void OnAtaskadded(Task a);
+        void onTaskFinished(Task a);
+        void onTaskProgress(Task task);
+    }
+    class Task {
+        String id;
+        int progress;
+    }
     private TaskPreviewAdapter taskPreviewAdapter;
     View view;
 
     public TaskPreviewFragment(){
+        //FIXME:  do onCreate
         IServiceManager serviceManager = new ServiceManager(getContext());
         taskPreviewAdapter = new TaskPreviewAdapter(serviceManager);
     }
@@ -43,10 +53,18 @@ public class TaskPreviewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        //bind to service
+        bindedSErivce.addonATaskAddedListner(this);
     }
+
+    onResume-> bind to service & add listerner
+    onPause -> unbind and remove listenr
 
     public TaskPreviewAdapter returnAdapter(){
         return this.taskPreviewAdapter;
+    }
+
+    void onTaskAdded(Task t) {
+        myTasksAdapter.updateTaskInfo(t);
     }
 }
