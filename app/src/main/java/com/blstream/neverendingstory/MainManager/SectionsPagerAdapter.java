@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.blstream.neverendingstory.Class.TaskPreviewFragment;
+import com.blstream.neverendingstory.ServiceManager.ServiceManager;
 import com.blstream.neverendingstory.StartScreen.StartScreenFragment;
 
 /**

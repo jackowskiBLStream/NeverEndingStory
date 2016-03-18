@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import com.blstream.neverendingstory.R;
 import com.blstream.neverendingstory.ServiceManager.Service;
+import com.blstream.neverendingstory.ServiceManager.ServiceManager;
+import com.blstream.neverendingstory.ServiceManager.ServiceThread;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    Thread serviceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_layout);
         if (savedInstanceState != null) {
             return;
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), 2
         );
+        serviceManager = new Thread(new ServiceManager(getApplicationContext()));
+        serviceManager.start();
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
