@@ -15,7 +15,7 @@ public interface ITaskProgressProvider {
 
     /**
      *
-     * @return teturns ids of all tasks in queue
+     * @return ids of all tasks in queue
      */
     ArrayList<Integer> getAllTasksIds();
 
