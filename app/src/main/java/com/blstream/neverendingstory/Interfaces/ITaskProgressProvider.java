@@ -19,4 +19,5 @@ public interface ITaskProgressProvider {
      */
     ArrayList<Integer> getAllTasksIds();
 
+
 }
